@@ -77,6 +77,7 @@ DEVICE_MANIFEST_FILE := \
 # Ignore overriding commands errors
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_CLANG_PROPERTY := true
+BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_redwood
