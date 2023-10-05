@@ -76,6 +76,7 @@ DEVICE_MANIFEST_FILE := \
 
 # Ignore overriding commands errors
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_CLANG_PROPERTY := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
