@@ -218,9 +218,9 @@ status_t AidlBatteryListenerImpl::init()
     return NO_ERROR;
 }
 
-AidlBatteryListenerImpl::AidlBatteryListenerImpl(cb_fn_t cb) :
-    mCb(cb),
-    mDeathRecipient(AIBinder_DeathRecipient_new(AidlBatteryListenerImpl::serviceDied)) {
+AidlBatteryListenerImpl::AidlBatteryListenerImpl(cb_fn_t cb) :  
+    mDeathRecipient(AIBinder_DeathRecipient_new(AidlBatteryListenerImpl::serviceDied)),
+    mCb(cb) {
 }
 
 AidlBatteryListenerImpl::~AidlBatteryListenerImpl() {
