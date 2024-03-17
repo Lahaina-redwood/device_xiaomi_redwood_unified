@@ -112,7 +112,10 @@ function configure_memory_parameters() {
 
 	configure_zram_parameters
 	configure_read_ahead_kb_values
-	echo 60 > /proc/sys/vm/swappiness
+	echo 20 > /proc/sys/vm/swappiness
+	echo 10 > /proc/sys/vm/dirty_ratio
+	echo 5 > /proc/sys/vm/dirty_background_ratio
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task 
 
         # Disable wsf  beacause we are using efk.
         # wsf Range : 1..1000. So set to bare minimum value 1.
@@ -132,6 +135,24 @@ rev=`cat /sys/devices/soc0/revision`
 ddr_type=`od -An -tx /proc/device-tree/memory/ddr_device_type`
 ddr_type4="07"
 ddr_type5="08"
+
+# Battery life optimization
+echo Y > /sys/module/lpm_levels/parameters/sleep_disabled
+echo Y > /sys/module/lpm_levels/parameters/sleep_through_last_second
+echo 1 > /sys/module/msm_pm/modes/cpuhotplug/disable_hotplug
+echo ENERGY_AWARE > /sys/kernel/debug/sched_features
+
+# GPU Optimization
+echo 6 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+
+# Wi-Fi Power Saving
+echo 1 > /proc/sys/net/wireless/wi-fi-active-low-power-mode
+echo 1 > /proc/sys/net/wireless/wi-fi-suspend-power-optimization
+
+# Kernel Tweaks
+echo 0 > /proc/sys/kernel/nmi_watchdog
+echo 0 > /proc/sys/kernel/hung_task_timeout_secs
+echo 1500000 > /proc/sys/kernel/sched_wakeup_granularity_ns
 
 # Core control parameters for gold
 # Prefer CPU4 for isolation based on the thermal characteristics.
@@ -163,10 +184,10 @@ echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
 echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
 # Setting b.L scheduler parameters
-echo 71 95 > /proc/sys/kernel/sched_upmigrate
-echo 65 85 > /proc/sys/kernel/sched_downmigrate
-echo 100 > /proc/sys/kernel/sched_group_upmigrate
-echo 85 > /proc/sys/kernel/sched_group_downmigrate
+echo 70 90 > /proc/sys/kernel/sched_upmigrate
+echo 65 80 > /proc/sys/kernel/sched_downmigrate
+echo 90 > /proc/sys/kernel/sched_group_upmigrate
+echo 70 > /proc/sys/kernel/sched_group_downmigrate
 echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
 
@@ -180,8 +201,8 @@ echo 0-6 > /dev/cpuset/foreground/cpus
 
 # configure governor settings for silver cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-echo 20000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
+echo 40000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 echo 1152000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
 echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
@@ -192,7 +213,7 @@ echo 200 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
 
 # configure governor settings for gold cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-echo 10000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
+echo 20000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
 echo 1228800 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
 echo 691200 > /sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq
@@ -205,8 +226,8 @@ echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
 
 # configure governor settings for gold+ cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
-echo 5000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
+echo 10000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
 echo 1324800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
 echo 806400 > /sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq
 echo 85 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_load
