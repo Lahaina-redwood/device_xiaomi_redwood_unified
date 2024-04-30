@@ -58,10 +58,12 @@
     <!-- Comma-separated list of packages to exclude from camera protection. In our case,
     ignore the gaze detection and faceunlock package -->
     <string translatable="false" name="config_cameraProtectionExcludedPackages">co.aospa.sense</string>
+    
+    <!-- Preferred refresh rate at keyguard, if supported by the display -->
+    <integer name="config_keyguardRefreshRate">60</integer>
 
     <!-- Preferred max refresh rate at keyguard, if supported by the display. -->
-    <integer name="config_keyguardMaxRefreshRate">60</integer>
-</resources>
+    <integer name="config_keyguardMaxRefreshRate">90</integer>
 
     <!-- Whether show refresh rate QS tile -->
     <bool name="config_showRefreshRateQsTile">true</bool>
