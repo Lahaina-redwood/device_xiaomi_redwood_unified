@@ -288,6 +288,7 @@ ro.incremental.enable=yes
 vendor.sys.thermal.data.path=/data/vendor/thermal/
 
 # USB
+<<<<<<< HEAD
 vendor.usb.use_ffs_mtp=1
 
 # Wifi
@@ -301,3 +302,4 @@ zygote.critical_window.minute=10
 
 # USB
 vendor.usb.product_string=Poco X5 Pro
+ro.usb.uvc.enabled=true
