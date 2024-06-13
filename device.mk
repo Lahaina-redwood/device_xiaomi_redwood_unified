@@ -32,6 +32,9 @@ PRODUCT_PACKAGES += \
     libvolumelistener
 
 PRODUCT_PACKAGES += \
+    libaudioroute.vendor
+
+PRODUCT_PACKAGES += \
     audioadsprpcd \
     audio.r_submix.default \
     audio.usb.default
@@ -132,11 +135,15 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
     vendor.qti.hardware.camera.device@1.0.vendor \
-    vendor.qti.hardware.camera.postproc@1.0.vendor
+    vendor.qti.hardware.camera.postproc@1.0.vendor \
+    libutilscallstack.vendor
 
 PRODUCT_PACKAGES += \
     libMegviiFacepp-0.5.2 \
     libmegface
+
+PRODUCT_PACKAGES += \
+    liblz4.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera_cnf.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_cnf.txt
@@ -424,6 +431,9 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor \
     vendor.qti.hardware.perf@2.2.vendor
 
+PRODUCT_PACKAGES += \
+    libssl.vendor
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
@@ -454,6 +464,15 @@ PRODUCT_PACKAGES += \
     CarrierConfigOverlay \
     libjson \
     librmnetctl
+
+PRODUCT_PACKAGES += \
+    libcurl.vendor \
+    libjsoncpp \
+    libjsoncpp.vendor \
+    libsqlite \
+    libsqlite.vendor \
+    libutilscallstack \
+    libutilscallstack.vendor
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -578,3 +597,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+PRODUCT_PACKAGES += \
+    libpng.vendor
