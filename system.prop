@@ -1,9 +1,6 @@
 # Bluetooth
 vendor.bluetooth.soc=hastings
 
-# Camera
-vendor.camera.aux.packagelist=com.android.camera,org.pixelexperience.faceunlock
-
 # CNE
 persist.vendor.cne.feature=1
 
