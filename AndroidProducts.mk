@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/blaze_redwood.mk
+    $(LOCAL_DIR)/everest_redwood.mk
 
 COMMON_LUNCH_CHOICES := \
-    blaze_redwood-user \
-    blaze_redwood-userdebug \
-    blaze_redwood-eng
+    everest_redwood-user \
+    everest_redwood-userdebug \
+    everest_redwood-eng
